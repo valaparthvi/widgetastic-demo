@@ -1,0 +1,19 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Widgetastic</title>
+</head>
+<body>
+    {% block content %}
+    
+    {% if data %}
+        {{ data }}
+    {% else %}
+        {{ form }}
+    {% endif %}
+    
+    {% endblock %}
+</body>
+</html>
