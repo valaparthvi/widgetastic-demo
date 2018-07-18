@@ -1,19 +1,48 @@
-{% load staticfiles %}
-
+{% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Widgetastic</title>
-</head>
-<body>
-    {% block content %}
-    
-    {% if data %}
-        {{ data }}
-    {% else %}
-        {{ form }}
-    {% endif %}
-    
-    {% endblock %}
-</body>
+    <head>
+        <title>Widgetastic</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <script>
+        $( function() {
+        $( "#datepicker" ).datepicker();
+        } );
+        </script>
+    </head>
+    <body>
+        {% block content %}
+            <h1> User Form </h1>
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div>
+                    <label for="id_fullname">Full Name: </label>
+                    {% render_field form.fullname  %}
+                </div>
+                <div>
+                    <label for="id_email">Username: </label>
+                    {% render_field form.username  %}
+                </div>
+                <div>
+                    <label for="id_email">Email: </label>
+                    {% render_field form.email  %}
+                </div>
+                <div>
+                    <label for="id_dob">Date of Birth: </label>
+                    {% render_field form.dob id="datepicker" %}
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            {% if data %}
+                {% for field in data %}
+                    <div>{{ field }}</div>
+                {% endfor %}
+            {% endif %}
+            <a href="{% url 'dynamic' %}"><button>Demo 2</button></a>
+        {% endblock %}
+    </body>
 </html>

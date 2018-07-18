@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <form method="POST" action="{% url 'dynamic' %}" name="menu_form">
+        {% csrf_token %}
+        <div>
+        <label for="id_dropdown">Menu</label>
+        {% render_field form.dropdown onChange="menu_form.submit()" %}
+        </div>
+    </form>
+
+    {% if menu_1 %}
+        <div>{{menu_1.as_p}}</div>
+    {% endif %}
+
+    {% if menu_2 %}
+        <p>Let's here a TCP/IP joke!</p>
+        <img src="{% static 'img/tcpjoke.jpg' %}" />
+    {% endif %}
+
+    <a href="{% url 'register' %}"><button>Home</button></a>
+{% endblock %}

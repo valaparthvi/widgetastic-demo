@@ -1,12 +1,19 @@
 from django import forms
-from .models import User
 
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['full_name', 'email', 'dob']
+class UserForm(forms.Form):
+    fullname = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=20)
+    email = forms.EmailField()
+    dob = forms.DateField()
 
 
 class DynamicForm(forms.Form):
-    dropdown = forms.Select(choices=(('menu_1', 'Menu 1'), ('menu_2', 'Menu 2')))
+    dropdown = forms.CharField(widget=forms.Select(
+        choices=(('', ''), ('menu_1', 'Form'), ('menu_2', 'Simple Text'))))
+
+
+class DemoForm(forms.Form):
+    name = forms.CharField(max_length=20)
+    dropdown = forms.CharField(widget=forms.Select(
+        choices=(('python', 'Python'), ('ruby', 'Ruby'), ('c', 'C'), ('javascript', 'JavaScript'))))

@@ -13,15 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
 from widgetastic_demo import views
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^', include('widgetastic_demo.urls'), name='demo'),
-    url(r'^$', views.UserView, name='register'),
-    url(r'^dynamic', views.DynamicView, name='dynamic'),
+    url(r'^$', views.UserView.as_view(), name='register'),
+    url(r'^dynamic/$', views.DynamicView.as_view(), name='dynamic'),
 
 ]
