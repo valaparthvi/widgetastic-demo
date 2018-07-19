@@ -5,9 +5,13 @@
     <head>
         <title>Widgetastic</title>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href='{% static "mdl/material.min.css" %}'>
+        <link rel="stylesheet" href='{% static "getmdl-select/getmdl-select.min.css"%}'>
+        <script defer src='{% static "getmdl-select/getmdl-select.min.js" %}'></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <script src='{% static "mdl/material.min.js" %}'></script>
         <script>
         $( function() {
         $( "#datepicker" ).datepicker();
@@ -15,34 +19,54 @@
         </script>
     </head>
     <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header mdl-color-text--grey-100">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">Widgetastic Demo</span>
+                </div>
+            </header>
+        </div>
         {% block content %}
-            <h1> User Form </h1>
-            <form method="POST" action="{% url 'register' %}">
-                {% csrf_token %}
-                <div>
-                    <label for="id_fullname">Full Name: </label>
-                    {% render_field form.fullname  %}
+            <div class="shift-down mdl-cell mdl-cell--12-col">
+                <div class="profile-section">
+                    <form class="profile-section" method="POST" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        <h3> User Form </h3>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="mdl-textfield__label" for="id_{{ form.fullname.name }}">{{ form.fullname.label }}</label>
+                            {% render_field form.fullname class+="mdl-textfield__input" %}
+                        </div>
+                        <br />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="mdl-textfield__label" for="id_{{ form.username.name }}">{{ form.username.label }}</label>
+                            {% render_field form.username class+="mdl-textfield__input" %}
+                        </div>
+                        <br />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="mdl-textfield__label" for="id_{{ form.email.name }}">{{ form.email.label }}</label>
+                            {% render_field form.email class+="mdl-textfield__input" %}
+                        </div>
+                        <br />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="mdl-textfield__label" for="id_{{ form.dob.name }}">Date of Birth</label>
+                            {% render_field form.dob id="datepicker" class+="mdl-textfield__input"%}
+                        </div>
+                        <br />
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Submit</button>
+                    </form>
                 </div>
-                <div>
-                    <label for="id_email">Username: </label>
-                    {% render_field form.username  %}
+                <hr>
+                <div class="profile-section">
+                    {% if data %}
+                        {% for field in data %}
+                            <h4>{{ field }}</h4>
+                        {% endfor %}
+                    {% endif %}
+                    <a href="{% url 'dynamic' %}"><button class="space-btn mdl-button mdl-js-button mdl-button--raised mdl-color--green-400 mdl-color-text--white">Dynamic View</button></a>
                 </div>
-                <div>
-                    <label for="id_email">Email: </label>
-                    {% render_field form.email  %}
-                </div>
-                <div>
-                    <label for="id_dob">Date of Birth: </label>
-                    {% render_field form.dob id="datepicker" %}
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-            {% if data %}
-                {% for field in data %}
-                    <div>{{ field }}</div>
-                {% endfor %}
-            {% endif %}
-            <a href="{% url 'dynamic' %}"><button>Demo 2</button></a>
-        {% endblock %}
-    </body>
+            </div>
+        </div>
+        
+    {% endblock %}
+</body>
 </html>

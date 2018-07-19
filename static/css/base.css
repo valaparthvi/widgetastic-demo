@@ -1,0 +1,24 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.profile-section {
+  width: 50%;
+  text-align: center;
+  margin: 25px auto 25px auto;
+}
+
+.profile-section .mdl-textfield__input {
+  font-size: 18px;
+}
+
+.profile-section .mdl-textfield__label {
+  font-size: 18px;
+}
+
+
+.shift-down{
+    padding-top: 80px;
+}

@@ -1,24 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-
 {% block content %}
-    <form method="POST" action="{% url 'dynamic' %}" name="menu_form">
-        {% csrf_token %}
-        <div>
-        <label for="id_dropdown">Menu</label>
-        {% render_field form.dropdown onChange="menu_form.submit()" %}
+    <div class="shift-down mdl-cell mdl-cell--12-col">
+        <div class="profile-section">
+            <h3> Dynamic Form </h3>
+            <form method="POST" action="{% url 'dynamic' %}" name="menu_form">
+                {% csrf_token %}
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
+                    <label class="mdl-textfield__label" for="id_{{ form.dropdown.name }}">Menu</label>
+                    {% render_field form.dropdown onChange="menu_form.submit()" class+="mdl-textfield__input" %}
+                </div>
+            </form>
         </div>
-    </form>
-
-    {% if menu_1 %}
-        <div>{{menu_1.as_p}}</div>
-    {% endif %}
-
-    {% if menu_2 %}
-        <p>Let's here a TCP/IP joke!</p>
-        <img src="{% static 'img/tcpjoke.jpg' %}" />
-    {% endif %}
-
-    <a href="{% url 'register' %}"><button>Home</button></a>
+    </div>
+    <div class="profile-section">
+        {% if menu_1 %}
+            <form method="">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label class="mdl-textfield__label" for="id_{{ form.name.name }}">{{ menu_1.name.label }}</label>
+                    {% render_field menu_1.name class+="mdl-textfield__input" %}
+                </div>
+                <br />
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
+                    <label class="mdl-textfield__label"  for="id_languages">{{ menu_1.languages.label }}</label>
+                    {% render_field menu_1.languages class+="mdl-textfield__input" %}
+                </div>
+            </form>
+        {% endif %}
+        {% if menu_2 %}
+            <h3>Do you want to hear a TCP/IP joke?</h3>
+            <img src="{% static 'img/tcpjoke.jpg' %}" />
+        {% endif %}
+    </div>
+    <hr>
+    <div class="profile-section">
+        <a href="{% url 'register' %}"><button class="space-btn mdl-button mdl-js-button mdl-button--raised mdl-color--green-400 mdl-color-text--white">Home</button></a>
+    </div>
 {% endblock %}
