@@ -1,0 +1,15 @@
+# widgetastic-demo
+A demo website for widgetastic
+
+1. Setup a virtual environment: `python3 -m venv venv_name`
+2. Activate virtual environment: `source venv/bin/activate`
+3. Perform migration: `python manage.py migrate`
+4. Run Server: `python manage.py runserver`
+
+
+### URL Patterns
+1. localhost:8000
+2. localhost:8000/dynamic
+
+### Notes
+1. Use `python manage.py runserver XXXX` to run the server on a specific port.
