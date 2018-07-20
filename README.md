@@ -11,9 +11,11 @@ A demo website for widgetastic
 ### URL Patterns
 1. localhost:8000
 2. localhost:8000/dynamic
+3. localhost:8000/datepicker
 
 ### Notes
 1. Use `python manage.py runserver XXXX` to run the server on a specific port. By default it runs on 8000.
 
 
 Check the demo [here](http://valaparthvi.pythonanywhere.com/).
+
