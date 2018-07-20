@@ -14,3 +14,6 @@ A demo website for widgetastic
 
 ### Notes
 1. Use `python manage.py runserver XXXX` to run the server on a specific port. By default it runs on 8000.
+
+
+Check the demo [here](http://valaparthvi.pythonanywhere.com/).
