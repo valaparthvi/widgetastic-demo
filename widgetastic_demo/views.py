@@ -13,8 +13,6 @@ class UserView(views.FormView):
     def form_valid(self, form):
         context_data = self.get_context_data()
         data = form.cleaned_data
-        if data['dob']:
-            data['dob'] = form.cleaned_data['dob'].strftime("%m-%d-%Y")
         context_data['data'] = ['Your %s is: %s' % (k, v) if v else '' for k, v in data.items()]
         context_data['form'] = forms.UserForm()
         return render(self.request, self.template_name, context=context_data)

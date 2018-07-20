@@ -5,7 +5,6 @@ class UserForm(forms.Form):
     fullname = forms.CharField(max_length=50, required=False)
     username = forms.CharField(max_length=20, required=False)
     email = forms.EmailField(required=False)
-    dob = forms.DateField(required=False)
 
 
 class DynamicForm(forms.Form):
