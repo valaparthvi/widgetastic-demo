@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.UserView.as_view(), name='register'),
     url(r'^dynamic/$', views.DynamicView.as_view(), name='dynamic'),
-
+    url(r'^datepicker/$', views.DatePickerView.as_view(), name='datepicker'),
 ]

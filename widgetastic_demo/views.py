@@ -34,3 +34,7 @@ class DynamicView(views.FormView):
         else:
             context_data['menu_2'] = True
             return render(self.request, self.template_name, context=context_data)
+
+
+class DatePickerView(views.TemplateView):
+    template_name = 'datepicker.html'
